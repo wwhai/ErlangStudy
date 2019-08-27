@@ -75,5 +75,5 @@ read_header(Data) ->
   case (Data) of
     <<Protocol:4, GramType:4, Length:4, PayLoad/binary>> ->
       io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]);
-    _ -> io:format("Datagram invalid")
+    _ -> io:format("Datagram invalid ~n")
   end.

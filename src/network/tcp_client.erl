@@ -11,7 +11,7 @@
 
 start(Port) ->
   {ok, Socket} = gen_tcp:connect("127.0.0.1", Port, [binary, {packet, raw}, {active, true}, {reuseaddr, true}]),
-  send_data(Socket, "TTCP00010001payloadString"),
+  send_data(Socket, term_to_binary("TTCP00010001payloadStringpayloadStringpayloadString")),
   Socket.
 
 
