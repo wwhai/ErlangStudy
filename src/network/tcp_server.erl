@@ -48,7 +48,7 @@ listen(LocalHostPort) ->
 %%
 loop(Socket) ->
   io:format("Start loop:  ~p ~n", [Socket]),
-  case gen_tcp:recv(Socket, 0) of
+  case gen_tcp:recv(Socket, 1024) of
     {ok, Data} ->
       io:format("Receive raw byte data ~p~n", [Data]),
 
