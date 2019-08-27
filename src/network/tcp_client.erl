@@ -7,10 +7,11 @@
 %%% Created : 24. 八月 2019 12:43
 %%%-------------------------------------------------------------------
 -module(tcp_client).
--export([start/1, send_data/2, close/1]).
+-export([start/1, close/1]).
 
 start(Port) ->
   {ok, Socket} = gen_tcp:connect("127.0.0.1", Port, [binary, {packet, raw}, {active, true}, {reuseaddr, true}]),
+  send_data(Socket, "TTCP00010001payloadString"),
   Socket.
 
 

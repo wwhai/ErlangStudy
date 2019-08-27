@@ -17,7 +17,7 @@ listen(Port) ->
     {ok, LocalSocket} ->
       io:format("Server success listening at port:  ~p ~n", [Port]),
       io:format("Server begin listening with options :  ~p ~n", [?TCP_OPTIONS]),
-      gen_tcp:listen(Port, ?TCP_OPTIONS),
+      %%gen_tcp:listen(Port, ?TCP_OPTIONS),
       accept(LocalSocket);
     {error, Reason} ->
       io:format("Server start error :  ~p ~n", [Reason])
