@@ -7,14 +7,14 @@
 %%% Created : 24. 八月 2019 12:42
 %%%-------------------------------------------------------------------
 -module(tcp_server).
--export([start_parallel_server/1]).
+-export([start/1]).
 %%
--define(TCP_OPTIONS, [binary, {packet, 0}, {active, false}, {reuseaddr, true}]).
+-define(TCP_OPTIONS, [binary, {packet, 4}, {active, false}, {reuseaddr, true}]).
 
 -import(ets, [insert_new/2]).
 
 %服务端
-start_parallel_server(Port) ->
+start(Port) ->
   %创建一个全局的ets表，存放客户端的id
   ets:new(clients_table, [ordered_set, public, named_table, {write_concurrency, true}, {read_concurrency, true}]),
 
@@ -26,33 +26,46 @@ start_parallel_server(Port) ->
       io:format("Server start failed with error:~p ~n", [Why])
   end.
 
+%% 当端口开启以后进行监听
 listen(LocalHostPort) ->
   case gen_tcp:accept(LocalHostPort) of
+
     {ok, RemoteSocket} ->
       %每连接到一个客户端，把id插入到ets表中
       io:format("New remote socket connected:~p ~n", [inet:peername(RemoteSocket)]),
 
-      case ets:last(clients_table) of
-        '$end_of_table' ->
-          ets:insert(clients_table, {1, RemoteSocket});
-        Other ->
-          ets:insert(clients_table, {Other + 1, RemoteSocket})
-      end,
+%%      case ets:last(clients_table) of
+%%        '$end_of_table' ->
+%%          ets:insert(clients_table, {1, RemoteSocket});
+%%        Other ->
+%%          ets:insert(clients_table, {Other + 1, RemoteSocket})
+%%      end,
       spawn(fun() -> loop(RemoteSocket) end),
 
       listen(LocalHostPort);
 
     {error, Reason} ->
-      io:format("Error : ~p~n", [Reason])
+      io:format("gen_tcp:accept error : ~p~n", [Reason])
   end.
-%%
+
+%% 循环接收消息
 loop(Socket) ->
   io:format("Start loop:  ~p ~n", [Socket]),
-  case gen_tcp:recv(Socket, 1024) of
-    {ok, Data} ->
-      io:format("Receive raw byte data ~p~n", [Data]),
 
-      read_header(Data),
+%%  receive
+%%    {tcp, Socket, Bin} ->
+%%      inet:setopts(Socket, [{active, once}]),
+%%      Message = binary_to_term(Bin),
+%%      io:format("Receive term  data ~p~n", [Message]),
+%%      loop(Socket)
+%%  end.
+
+  case gen_tcp:recv(Socket, 0) of
+    {ok, Data} ->
+      %% inet:setopts(Socket, [{active, once}]),
+      io:format("Receive raw byte data ~p~n", [Data]),
+      io:format("Receive term  data ~p~n", [binary_to_term(Data)]),
+      %% read_header(Data),
       loop(Socket);
     {error, closed} ->
       io:format("Socket [~p] close ~n", [Socket])
@@ -71,9 +84,6 @@ loop(Socket) ->
 %% 1000->[7]:
 
 
-read_header(Data) ->
-  case (Data) of
-    <<Protocol:4, GramType:4, Length:4, PayLoad/binary>> ->
-      io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]);
-    _ -> io:format("Datagram invalid ~n")
-  end.
+%%read_header(<<Protocol:1, GramType:1, Length:1, PayLoad/binary>>) ->
+%%
+%%  io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]).

@@ -9,7 +9,7 @@
 -module(http_server_demo).
 -export([listen/1]).
 %%
--define(TCP_OPTIONS, [binary, {packet, 0}, {active, false}, {reuseaddr, true}]).
+-define(TCP_OPTIONS, [binary, {packet, 4}, {active, false}, {reuseaddr, true}]).
 
 % Call echo:listen(Port) to start the service.
 listen(Port) ->

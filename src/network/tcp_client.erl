@@ -10,8 +10,10 @@
 -export([start/1, close/1]).
 
 start(Port) ->
-  {ok, Socket} = gen_tcp:connect("127.0.0.1", Port, [binary, {packet, raw}, {active, true}, {reuseaddr, true}]),
-  send_data(Socket, term_to_binary("TTCP00010001payloadStringpayloadStringpayloadString")),
+  {ok, Socket} = gen_tcp:connect("127.0.0.1", Port, [binary, {packet, 4}, {active, true}, {reuseaddr, true}]),
+  send_data(Socket, term_to_binary("10000000011111111222222223333333344444444")),
+  send_data(Socket, term_to_binary("20000000011111111222222223333333344444444")),
+  send_data(Socket, term_to_binary("30000000011111111222222223333333344444444")),
   Socket.
 
 
