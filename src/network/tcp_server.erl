@@ -9,21 +9,20 @@
 -module(tcp_server).
 -export([start/1]).
 %%
--define(TCP_OPTIONS, [binary, {packet, 2}, {active, false}, {reuseaddr, true}]).
-
--import(ets, [insert_new/2]).
+-define(TCP_OPTIONS, [binary, {packet, 0}, {active, false}, {reuseaddr, true}]).
 
 %服务端
 start(Port) ->
   %创建一个全局的ets表，存放客户端的id
   ets:new(clients_table, [ordered_set, public, named_table, {write_concurrency, true}, {read_concurrency, true}]),
-  Pid = spawn_link(fun() ->
-    {ok, LocalHostPort} = gen_tcp:listen(Port, ?TCP_OPTIONS),
-    io:format("Server start successful at port:~p ~n", [Port]),
-    listen(LocalHostPort)
-                   end
-  ),
-  {ok, Pid}.
+
+  case gen_tcp:listen(Port, ?TCP_OPTIONS) of
+    {ok, LocalHostPort} ->
+      io:format("Server start successful at port:~p ~n", [Port]),
+      listen(LocalHostPort);
+    {error, Why} ->
+      io:format("Server start failed with error:~p ~n", [Why])
+  end.
 
 %% 当端口开启以后进行监听
 listen(LocalHostPort) ->
@@ -39,26 +38,26 @@ listen(LocalHostPort) ->
 %%        Other ->
 %%          ets:insert(clients_table, {Other + 1, RemoteSocket})
 %%      end,
+      spawn(fun() -> loop(RemoteSocket, <<>>) end),
 
-      spawn(fun() -> listen(LocalHostPort) end),
-
-      loop(RemoteSocket, <<>>);
+      listen(LocalHostPort);
 
     {error, Reason} ->
-      io:format("gen_tcp:accept error : ~p~n", [Reason])
+      io:format("Error : ~p~n", [Reason])
   end.
-
 
 %% 循环接收消息
 loop(Socket, Buffer) ->
   io:format("Start loop:  ~p ~n", [Socket]),
+
   case gen_tcp:recv(Socket, 0) of
     {ok, Data} ->
+      inet:setopts(Socket, [{active, once}]),
       io:format("Receive raw byte data ~p~n", [Data]),
-      Data1 = read_header(<<Buffer/binary, Data/binary>>),
-      loop(Socket, Data1);
-    {error, Reason} ->
-      io:format("Socket [~p] Reason = ~p ~n", [Socket, Reason])
+      BinData = read_header(<<Buffer/binary, Data/binary>>),
+      loop(Socket, BinData);
+    {error, closed} ->
+      io:format("Socket [~p] close ~n", [Socket])
   end.
 
 %% 读取报文头[4个Byte=32bit]
@@ -73,13 +72,12 @@ loop(Socket, Buffer) ->
 %% 0111->[6]:
 %% 1000->[7]:
 
-read_header(<<Size:16, Bin:Size/binary, Bin2/binary>>) ->
-  <<Protocol:8, GramType:8, Length:8, PayLoad/binary>> = Bin,
-  io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]),
-  read_header(Bin2);
+%%
+%% Size:包长度
+%% Bin:实际的报文，包含了协议名，报文类型，长度，正文
+%%
+read_header(<<"TTCP", GramType:4, QOS:4, Size:8, Payload:Size/binary, LastBin/binary>>) ->
+  io:format("Protocol is [TTCP] and Size is [~p] and GramType  is [~p] and QOS is [~p] PayLoad is[~p] ~n", [ Size, GramType, QOS, Payload]),
+  read_header(LastBin);
 read_header(Bin) ->
   Bin.
-
-%%read_header(<<Protocol:1, GramType:1, Length:1, PayLoad/binary>>) ->
-%%
-%%  io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]).
