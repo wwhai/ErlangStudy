@@ -40,7 +40,7 @@ loop(Socket) ->
       io:format("recv ~p~n", [Data]),
       gen_tcp:send(Socket, <<"HTTP/1.1 200 OK\r\n\n Hello World,This is Erlang Http response">>),
       %%  HTTP 完成以后关闭Socket
-      gen_tcp:close(Socket),
+      %% gen_tcp:close(Socket),
       %%  尾递归 重新开始监听端口
       loop(Socket);
     {error, closed} ->

@@ -9,7 +9,7 @@
 -module(tcp_server).
 -export([start/1]).
 %%
--define(TCP_OPTIONS, [binary, {packet, 4}, {active, false}, {reuseaddr, true}]).
+-define(TCP_OPTIONS, [binary, {packet, 2}, {active, false}, {reuseaddr, true}]).
 
 -import(ets, [insert_new/2]).
 
@@ -17,14 +17,13 @@
 start(Port) ->
   %创建一个全局的ets表，存放客户端的id
   ets:new(clients_table, [ordered_set, public, named_table, {write_concurrency, true}, {read_concurrency, true}]),
-
-  case gen_tcp:listen(Port, ?TCP_OPTIONS) of
-    {ok, LocalHostPort} ->
-      io:format("Server start successful at port:~p ~n", [Port]),
-      listen(LocalHostPort);
-    {error, Why} ->
-      io:format("Server start failed with error:~p ~n", [Why])
-  end.
+  Pid = spawn_link(fun() ->
+    {ok, LocalHostPort} = gen_tcp:listen(Port, ?TCP_OPTIONS),
+    io:format("Server start successful at port:~p ~n", [Port]),
+    listen(LocalHostPort)
+                   end
+  ),
+  {ok, Pid}.
 
 %% 当端口开启以后进行监听
 listen(LocalHostPort) ->
@@ -40,35 +39,26 @@ listen(LocalHostPort) ->
 %%        Other ->
 %%          ets:insert(clients_table, {Other + 1, RemoteSocket})
 %%      end,
-      spawn(fun() -> loop(RemoteSocket) end),
 
-      listen(LocalHostPort);
+      spawn(fun() -> listen(LocalHostPort) end),
+
+      loop(RemoteSocket, <<>>);
 
     {error, Reason} ->
       io:format("gen_tcp:accept error : ~p~n", [Reason])
   end.
 
+
 %% 循环接收消息
-loop(Socket) ->
+loop(Socket, Buffer) ->
   io:format("Start loop:  ~p ~n", [Socket]),
-
-%%  receive
-%%    {tcp, Socket, Bin} ->
-%%      inet:setopts(Socket, [{active, once}]),
-%%      Message = binary_to_term(Bin),
-%%      io:format("Receive term  data ~p~n", [Message]),
-%%      loop(Socket)
-%%  end.
-
   case gen_tcp:recv(Socket, 0) of
     {ok, Data} ->
-      %% inet:setopts(Socket, [{active, once}]),
       io:format("Receive raw byte data ~p~n", [Data]),
-      io:format("Receive term  data ~p~n", [binary_to_term(Data)]),
-      %% read_header(Data),
-      loop(Socket);
-    {error, closed} ->
-      io:format("Socket [~p] close ~n", [Socket])
+      Data1 = read_header(<<Buffer/binary, Data/binary>>),
+      loop(Socket, Data1);
+    {error, Reason} ->
+      io:format("Socket [~p] Reason = ~p ~n", [Socket, Reason])
   end.
 
 %% 读取报文头[4个Byte=32bit]
@@ -83,6 +73,12 @@ loop(Socket) ->
 %% 0111->[6]:
 %% 1000->[7]:
 
+read_header(<<Size:16, Bin:Size/binary, Bin2/binary>>) ->
+  <<Protocol:8, GramType:8, Length:8, PayLoad/binary>> = Bin,
+  io:format("Head is [~p] and Type is [~p] Length is [~p] PayLoad is[~p] ~n", [Protocol, GramType, Length, PayLoad]),
+  read_header(Bin2);
+read_header(Bin) ->
+  Bin.
 
 %%read_header(<<Protocol:1, GramType:1, Length:1, PayLoad/binary>>) ->
 %%
