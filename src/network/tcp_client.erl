@@ -11,9 +11,15 @@
 
 start(Port) ->
   {ok, Socket} = gen_tcp:connect("127.0.0.1", Port, [binary, {packet, 2}, {active, true}, {reuseaddr, true}]),
-  send_data(Socket, term_to_binary("10000000011111111222222223333333344444444")),
-  send_data(Socket, term_to_binary("20000000011111111222222223333333344444444")),
-  send_data(Socket, term_to_binary("30000000011111111222222223333333344444444")),
+  %% 打包
+  GramType = 1,
+  QOS = 2,
+  PayLoad = <<"HelloWorldErlang">>,
+  Size = bit_size(PayLoad),
+  Package = <<"TTCP", GramType:8, QOS:8, Size:16, PayLoad/binary>>,
+  io:format("Send ~p~n", [Package]),
+
+  send_data(Socket, Package),
   Socket.
 
 
