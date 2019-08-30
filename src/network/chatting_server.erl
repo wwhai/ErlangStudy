@@ -1,134 +1,202 @@
-
-%%%-------------------------------------------------------------------
-%%% @author 94217
-%%% @copyright (C) 2018, <COMPANY>
-%%% @doc
-%%%
-%%% @end
-%%% Created : 13. 十一月 2018 15:32
-%%%-------------------------------------------------------------------
 -module(chatting_server).
--author("94217").
--export([start/0,
-  create_chanel/2,
-  loop/1]).
+%-export([start/0,initialize_ets/0,info_lookup/1,loop/2,info_update/3,init/1,handle_call/3,terminate/2]).
+%-import(counter,[start/1,add/1,value/1,decrease/1,log_add/1,chat_add/1]).
+%-import(my_fsm,[start_count/0,count/1]).
+-compile(export_all).
+-define(SERVER, ?MODULE).
+-record(user, {id, name, passwd, login_times, chat_times, last_login, state}).
 
-% 启动一个服务器
 start() ->
-  %创建一个全局的ets表，存放频道名和频道内的用户
-  ets:new(channel, [bag, public, named_table, {write_concurrency, true}, {read_concurrency, true}]),
+  gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
 
-  case gen_tcp:listen(6789, [binary, {packet, 4}, {reuseaddr, true}, {active, true}]) of
-    {ok, Listen} ->
-      spawn(fun() -> par_connect(Listen) end);
-    {error, Why} ->
-      io:format("server start error,the reason maybe ~p~n
-            now is going restart~n", [Why])
-  end.
+init([]) ->
+  initialize_ets(),
+  start_parallel_server(),
+  {ok, ets:new(mysocket, [public, named_table])}.
 
-%接受连接
-par_connect(Listen) ->
-  case gen_tcp:accept(Listen) of
-    {ok, Socket} ->
-      spawn(fun() -> par_connect(Listen) end),
-      loop(Socket);
-    {error, Why} ->
-      io:format("connect fail:~w~n", [Why])
-  end.
-%监听消息
-loop(Socket) ->
+
+%开启服务器
+start_parallel_server() ->
+  {ok, Listen} = gen_tcp:listen(2345, [binary, {packet, 0}, {reuseaddr, true}, {active, true}]),
+  spawn(fun() -> per_connect(Listen) end).
+
+%每次绑定一个当前Socket后再分裂一个新的服务端进程，再接收新的请求
+per_connect(Listen) ->
+  {ok, Socket} = gen_tcp:accept(Listen),
+  spawn(fun() -> per_connect(Listen) end),
+  loop(Socket).
+
+
+%初始化ets
+initialize_ets() ->
+  ets:new(test, [set, public, named_table, {keypos, #user.name}]),
+  ets:insert(test, #user{id = 01, name = "carlos", passwd = "123", login_times = 0, chat_times = 0, last_login = {}, state = 0}),
+  ets:insert(test, #user{id = 02, name = "qiqi", passwd = "123", login_times = 0, chat_times = 0, last_login = {}, state = 0}),
+  ets:insert(test, #user{id = 03, name = "cym", passwd = "123", login_times = 0, chat_times = 0, last_login = {}, state = 0}).
+
+%查询ets
+info_lookup(Key) ->
+  %返回值是一个元组
+  ets:lookup(test, Key).
+
+%修改ets信息
+info_update(Key, Pos, Update) ->
+  ets:update_element(test, Key, {Pos, Update}).
+
+
+%<<-------------------------回调函数----------------------------->>
+%登录的时候添加socket
+handle_call({addSocket, UserName, Socket}, _From, Tab) ->
+  Reply = case ets:lookup(Tab, UserName) of
+            [{UserName, Socket}] -> have_socket;
+
+            [] -> ets:insert(Tab, {UserName, Socket})
+          end,  %这里是顺序结构，所以用逗号
+  io:format("Tab ~p~n", [Tab]),
+  % io:format("mysocket ~p~n",[ets:i(Tab)]),
+  {reply, Reply, Tab};
+
+%退出的时候，删除socket
+handle_call({deleteSocket, UserName, Socket}, _From, Tab) ->
+  Reply = case ets:lookup(Tab, UserName) of
+            [{UserName, Socket}] -> ets:delete(Tab, UserName);
+
+            [] -> io:format("no exist this  socket ~p~n", [Socket])
+          end,  %这里是顺序结构，所以用逗号
+
+  % io:format("mysocket ~p~n",[ets:i(Tab)]),
+  {reply, Reply, Tab};
+
+%用户在线个数
+handle_call({userNumber}, _From, Tab) ->
+  Socketlist = ets:tab2list(Tab),
+  io:format("~p user online~n", [length(Socketlist)]),
+  {reply, [], Tab};
+
+%广播信息
+handle_call({sendAllMessage, Name, Msg}, _From, Tab) ->
+  %Socketlist = [{UserName,Socket,Name,Msg}||{UserName,Socket} <- ets:tab2list(Tab)],  不用推导了
+  Socketlist = [{UserName, Socket} || {UserName, Socket} <- ets:tab2list(Tab), UserName =/= Name],
+  io:format("list ~p~n", [Socketlist]),
+
+  lists:foreach(
+    fun({UserName, Socket}) ->
+      N = term_to_binary(Name), %用户名字长度  竟然可以用外面的变量
+      M = term_to_binary(Msg),   %信息长度
+      Packet = <<0010:16, (byte_size(N)):16, N/binary, (byte_size(M)):16, M/binary>>,
+      gen_tcp:send(Socket, Packet)
+    end,
+    Socketlist
+  ),
+
+  {reply, [], Tab}.
+
+
+%<<-------------------------回调函数----------------------------->>
+
+
+%用户在线人数。
+userNumber() ->
+  gen_server:call(server_example, {userNumber}).
+
+
+%接收信息并处理
+loop(Socket) ->     %loop(Pid,Socket)
+  io:format("receiving...~n"),
   receive
+  %Msg  ->    io:format(" ~p~n",[Msg]);
     {tcp, Socket, Bin} ->
-      L = binary_to_term(Bin),
-      io:format("data = ~p~n", [L]),
-      case binary_to_term(Bin) of
-        %%创建频道
-        {creat, Pname} ->
-          Reply = create_chanel(Socket, Pname),
-          gen_tcp:send(Socket, term_to_binary(Reply)),
-          loop(Socket);
-        %%列出频道
-        showlist ->
-          list_all_channel(Socket),
-          loop(Socket);
+      io:format("i carlos am coming~n"),
+      %<<State:16,Str1:2/binary,Str2:2/binary>> = Bin,
 
-        %%加入特定频道
-        {add, Pname} ->
-          {true, Reply} = add_channel(Pname, Socket),
-          gen_tcp:send(Socket, term_to_binary(Reply)),
-          loop(Socket);
-        %%退出当前频道
-        {retchannel, Pname} ->
-          {ok, Reply} = ret_channel(Pname, Socket),
-          gen_tcp:send(Socket, term_to_binary(Reply)),
-          loop(Socket);
+      <<State:16, Date/binary>> = Bin,
 
-        %%在频道内发送消息
-        {talk, Pname, Str} ->
-          Reply = channel_talk(Socket, Pname, Str),
-          loop(Socket);
-        %%列出频道内所有用户
-        {showuser, Pname} ->
-          {true, Userlist} = find_user(Pname),
-          gen_tcp:send(Socket, term_to_binary({user, Userlist})),
-          loop(Socket)
-      end
+      <<Size1:16, Date1/binary>> = Date,  %姓名的长度
+      <<Str1:Size1/binary, Date2/binary>> = Date1,
+      <<Size2:16, Date3/binary>> = Date2,  %密码的长度
+      <<Str2:Size2/binary, Date4/binary>> = Date3,
 
+      %io:format(" log2 ~p  ~p  ~n",[Str1,Str2]),
+
+      %case binary_to_term(Bin) of
+      case State of
+        %登录
+        0000 -> %{Name,Passwd} = binary_to_term(Str),
+
+          Name = binary_to_term(Str1),
+          io:format("logining  ~p ~n", [Name]), %cym
+          case info_lookup(Name) of
+            [{user, Uid, Pname, Pwd, Logc, ChatC, Lastlog, LonginState}] -> S = term_to_binary("success"),
+              N = term_to_binary(Name),
+              Packet = <<0000:16, (byte_size(S)):16, S/binary, (byte_size(N)):16, N/binary>>,
+              % Packet = <<0000:16>>,
+              %处理一下业务， 登录次数加1 状态改为 1，登录时间在退出的时候才修改,
+              %mysocket如果还没有添加socket就添加一下socket
+              gen_server:call(server_example, {addSocket, Pname, Socket}),
+              info_update(Pname, 5, Logc + 1),
+              info_update(Pname, 8, 1),
+              io:format("after logining ~p~n", [info_lookup(Pname)]),
+              gen_tcp:send(Socket, Packet),
+              io:format("user ~p have logged~n", [Name]),
+              % io:format("user ~p have logged ~p times ~n",[Name,Reply1]),
+              loop(Socket);   %loop(Pid,Socket);
+            %为空表示该用户没有记录
+            [] -> io:format("you haved not registered yet"),   %返回的是[]  而不是  [{}]
+              F = term_to_binary("failed"),
+              N = term_to_binary(Name),
+              Packet = <<0000:16, (byte_size(F)):16, F/binary, (byte_size(N)):16, N/binary>>,
+              gen_tcp:send(Socket, Packet),
+              loop(Socket)       % loop(Pid,Socket)
+          end;
+        %接收信息
+        0001 ->
+          Name = binary_to_term(Str1),
+          Msg = binary_to_term(Str2),
+          [#user{chat_times = Ccount, state = LoginState}] = info_lookup(Name),
+          %更新聊天次数
+          case LoginState of
+            1 -> info_update(Name, 6, Ccount + 1),
+              %  Reply = personal_chat_count({cadd,Name,Ccount}),
+              %  io:format("User ~p :~p~n",[Name,Msg]),
+              %  io:format("User ~p have chatted with his friend on line ~p times ~n",[Name,Reply]),
+              N = term_to_binary({"ok", "received"}),
+              Len = byte_size(N),
+              Packet = <<0001:16, Len:16, N/binary>>,
+              io:format("received  the  Msg  ~ts : ~ts~n", [Name, Msg]),
+              %广播信息
+              gen_tcp:send(Socket, Packet),
+              gen_server:call(server_example, {sendAllMessage, Name, Msg}),
+              loop(Socket);  %loop(Pid,Socket);
+            0 ->
+              N = term_to_binary({"failed", "noLogin"}),
+              Len = byte_size(N),
+              Packet = <<0001:16, Len:16, N/binary>>,
+              io:format("user ~p  no login", [Name]),
+              gen_tcp:send(Socket, Packet),
+              loop(Socket)  %loop(Pid,Socket);
+          end;
+
+
+        %退出
+        0002 ->
+          Name = binary_to_term(Str2),
+          io:format("see ~p: ~p~n", [Name, info_lookup(Name)]),
+          [#user{login_times = Log, last_login = LastLo}] = info_lookup(Name),
+          Last = calendar:now_to_local_time(erlang:now()), % 4.格式化时间  todo
+          % mysocket里，去除这个socket。
+          gen_server:call(server_example, {deleteSocket, Name, Socket}),
+          N = term_to_binary("ok"),
+          Packet = <<0002:16, (byte_size(N)):16, N/binary>>,
+          gen_tcp:send(Socket, Packet),
+          %修改最后登录时间
+          info_update(Name, 7, Last),
+          info_update(Name, 8, 0),
+          io:format("after logout ~p~n", [info_lookup(Name)])
+        %io:format("~p users online~n",[Reply])
+
+
+      end;
+
+    {tcp_closed, Socket} ->
+      io:format("Server socket closed~n")
   end.
-
-%%创建频道
-create_chanel(Socket, Chaname) ->
-  io:format("Data~p~n", [Chaname]),
-  ets:insert(channel, {creat, Chaname}),
-  create_channel_ok.
-%%列出频道
-list_all_channel(Socket) ->
-  L = ets:lookup(channel, creat),
-  io:format("~p~n", [L]),
-  gen_tcp:send(Socket, term_to_binary({list_channel, L})).
-
-%%加入特定频道
-add_channel(Pname, Socket) ->
-  %%判断频道是否存在
-  Lis = [ChannelList || {creat, ChannelList} <- ets:tab2list(channel)],  %%列出所有频道名
-  io:format("~p~n", [Lis]),
-  case lists:member(Pname, Lis) of                                        %%查看所加入的频道名是否存在
-    false ->
-      {true, nochannel};
-    true ->
-      ets:insert(channel, {Pname, Socket}),
-      {true, joinsucess}
-  end.
-
-%%退出频道
-ret_channel(Pname, Socket) ->
-  %%删除表里频道名对应的套接字
-  ets:delete_object(channel, {Pname, Socket}),
-  {ok, deleteok}.
-
-%%在频道内发送消息
-channel_talk(Socket, Pname, Str) ->
-  %%查看该用户是否在频道内
-  io:format("str = ~p~n", [Str]),
-  ChannelName = ets:lookup(channel, Pname),
-  case lists:member({Pname, Socket}, ChannelName) of
-    true ->
-      io:format("is channel ~n"),
-      sendtalk(Pname, Str);
-    false ->
-      false
-  end.
-
-%%列出频道内所有用户
-find_user(Pname) ->
-  User = ets:lookup(channel, Pname),
-  io:format("Userlist : ~p~n", [User]),
-  {true, User}.
-%%将消息转发给所有频道内所有的套接字
-sendtalk(Pname, Str) ->
-  %%将频道内所有的套接字找出来
-  AllSocketPname = ets:lookup(channel, Pname),
-  [sendStr(Socket, Str) || {Pname, Socket} <- AllSocketPname].
-sendStr(Socket, Str) ->
-  gen_tcp:send(Socket, term_to_binary({data, Socket, Str})),
-  io:format("send user : ~p~n", [Socket]).

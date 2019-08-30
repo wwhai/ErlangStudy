@@ -27,48 +27,37 @@ start(Port) ->
 %% 当端口开启以后进行监听
 listen(LocalHostPort) ->
   case gen_tcp:accept(LocalHostPort) of
-
     {ok, RemoteSocket} ->
       %每连接到一个客户端，把id插入到ets表中
       io:format("New remote socket connected:~p ~n", [inet:peername(RemoteSocket)]),
+      gen_tcp:send(RemoteSocket, <<"FUCKU!">>),
 
-%%      case ets:last(clients_table) of
-%%        '$end_of_table' ->
-%%          ets:insert(clients_table, {1, RemoteSocket});
-%%        Other ->
-%%          ets:insert(clients_table, {Other + 1, RemoteSocket})
-%%      end,
       spawn(fun() -> loop(RemoteSocket, <<>>) end),
-
       listen(LocalHostPort);
-
     {error, Reason} ->
       io:format("Error : ~p~n", [Reason])
   end.
 
-%% 循环接收消息
+%% <84,84,67,80,1,2,0,168,72,101,108,108,111,87,111,114,108,100,69, 114,108,97,110,103,72,72,72,72,72>>
 loop(Socket, Buffer) ->
   io:format("Start loop:  ~p ~n", [Socket]),
-
   case gen_tcp:recv(Socket, 0) of
     {ok, Data} ->
-      inet:setopts(Socket, [{active, once}]),
-      io:format("Receive raw byte data ~p~n", [Data]),
-      <<"TTCP", GramType:8, QOS:8, Size:16, PayLoad/binary>> = Data,
-      io:format("Protocol is [TTCP] and Size is [~p] and GramType  is [~p] and QOS is [~p] PayLoad is[~p] ~n", [Size, GramType, QOS, PayLoad]);
-
-    %% BinData = read_header(<<Buffer/binary, Data/binary>>),
-    %% loop(Socket, BinData);
+      %% inet:setopts(Socket, [{active, once}]),
+      io:format("Receive data ~p~n", [Data]),
+      LeastBinData = read_header(<<Buffer/binary, Data/binary>>),
+      loop(Socket, LeastBinData);
     {error, closed} ->
       io:format("Socket [~p] close ~n", [Socket])
+
   end.
 
-%%
-%% Size:包长度
-%% Bin:实际的报文，包含了协议名，报文类型，长度，正文
-%%
-read_header(<<"TTCP", GramType:8, QOS:8, Size:16, PayLoad:Size/binary, LeastBin>>) ->
-  io:format("Protocol is [TTCP] and Size is [~p] and GramType  is [~p] and QOS is [~p] PayLoad is[~p] ~n", [Size, GramType, QOS, PayLoad]),
+
+%% 解包<<84,84,67,80,1,2,0,128,72,101,108,108,111,87,111,114,108,100,69,114,108, 97,110,103>>
+read_header(<<"TTCP", GramType:8, QOS:8, Size:16, PayLoad:Size/bitstring, LeastBin/binary>>) ->
+  io:format("Type is [~p] QOS is [~p] Size is [~p] PayLoad is[~p] ~n", [GramType, QOS, Size, PayLoad]),
+  io:format("LeastBin is [~p]", [LeastBin]),
   read_header(LeastBin);
+%% 读取剩下的
 read_header(Bin) ->
   Bin.
