@@ -14,19 +14,11 @@ start(Port) ->
   io:format("1~n"),
   send_data(Socket, gen_packet()),
   io:format("2~n"),
-  send_data(Socket, gen_packet()),
-
-  Socket.
+  send_data(Socket, gen_packet()).
 
 
-send_data(Socket, Data) when is_list(Data) orelse is_binary(Data) orelse is_bitstring(Data) ->
+send_data(Socket, Data) ->
   gen_tcp:send(Socket, Data).
-%%  receive
-%%    {tcp, Socket, Bin} ->
-%%      io:format("recv ~p~n", [Bin]);
-%%    {tcp_closed, Socket} ->
-%%      io:format("remote server closed!~n")
-%%  end.
 
 
 gen_packet() ->
