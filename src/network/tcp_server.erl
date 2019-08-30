@@ -30,8 +30,6 @@ listen(LocalHostPort) ->
     {ok, RemoteSocket} ->
       %每连接到一个客户端，把id插入到ets表中
       io:format("New remote socket connected:~p ~n", [inet:peername(RemoteSocket)]),
-      gen_tcp:send(RemoteSocket, <<"FUCKU!">>),
-
       spawn(fun() -> loop(RemoteSocket, <<>>) end),
       listen(LocalHostPort);
     {error, Reason} ->
