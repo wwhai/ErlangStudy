@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1b46173-9fc4-4921-a03b-39b527308e82" name="Default Changelist" comment="" />
+    <list default="true" id="e1b46173-9fc4-4921-a03b-39b527308e82" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base_hello/hello_world.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/base_hello/hello_world.erl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network/tcp_client.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_client.erl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network/tcp_server.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_server.erl" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -9,34 +14,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+            <state relative-caret-position="1725">
+              <caret line="69" column="23" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/tcp_parallel_server.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="275">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -50,6 +51,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find />
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -58,20 +64,22 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/network/http_server_demo.erl" />
-        <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
         <option value="$PROJECT_DIR$/src/network/s.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_parallel_server.erl" />
+        <option value="$PROJECT_DIR$/src/network/chatting_server.erl" />
+        <option value="$PROJECT_DIR$/src/base_hello/hello_world.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_server.erl" />
+        <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="328" />
-    <option name="y" value="5" />
-    <option name="width" value="2181" />
-    <option name="height" value="1443" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1874" />
+    <option name="height" value="1096" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
@@ -96,6 +104,12 @@
               <item name="ErlangStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErlangStudy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="base_hello" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErlangStudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErlangStudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -110,6 +124,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -123,7 +141,47 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Erlang Application.TcpServer">
+  <component name="RunManager" selected="Erlang Application.TcpClient">
+    <configuration name="ChattingServer" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="ErlangStudy" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="erlFlags" value="" />
+      <option name="moduleAndFunction" value="chatting_server start_parallel_server" />
+      <option name="params" value="" />
+      <option name="useTestCodePath" value="false" />
+      <option name="workDirectory" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloWorld" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="ErlangStudy" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="erlFlags" value="" />
+      <option name="moduleAndFunction" value="hello_world start" />
+      <option name="params" value="" />
+      <option name="useTestCodePath" value="false" />
+      <option name="workDirectory" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TcpClient" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="ErlangStudy" />
       <option name="allowRunningInParallel" value="false" />
@@ -144,7 +202,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TcpServer" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="tcp_server" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="ErlangStudy" />
       <option name="allowRunningInParallel" value="false" />
       <option name="debugOptions">
@@ -164,30 +222,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="tcp_parallel_server" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="ErlangStudy" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="debugOptions">
-        <ErlangDebugOptions>
-          <option name="autoUpdateModulesNotToInterpret" value="true" />
-          <option name="modulesNotToInterpret">
-            <set />
-          </option>
-        </ErlangDebugOptions>
-      </option>
-      <option name="erlFlags" value="" />
-      <option name="moduleAndFunction" value="tcp_parallel_server start_server" />
-      <option name="params" value="" />
-      <option name="useTestCodePath" value="false" />
-      <option name="workDirectory" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Erlang Application.TcpServer" />
-      <item itemvalue="Erlang Application.tcp_parallel_server" />
+      <item itemvalue="Erlang Application.ChattingServer" />
+      <item itemvalue="Erlang Application.tcp_server" />
       <item itemvalue="Erlang Application.TcpClient" />
+      <item itemvalue="Erlang Application.HelloWorld" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -202,6 +241,9 @@
       <updated>1566910562804</updated>
       <workItem from="1566910564052" duration="7879000" />
       <workItem from="1566997404742" duration="5670000" />
+      <workItem from="1567125224425" duration="19471000" />
+      <workItem from="1567384506140" duration="3262000" />
+      <workItem from="1567472296801" duration="11090000" />
     </task>
     <task id="LOCAL-00001" summary="消息发出去收不到">
       <created>1566918962426</created>
@@ -210,32 +252,40 @@
       <option name="project" value="LOCAL" />
       <updated>1566918962426</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First Demo finished">
+      <created>1567159440917</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1567159440917</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13549000" />
+    <option name="totallyTimeSpent" value="58618000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="328" y="5" width="2181" height="1443" extended-state="0" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15243039" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18388888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Learn" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32950193" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944445" visible="true" weight="0.20704375" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32950193" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32870865" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32950193" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005556" side_tool="true" weight="0.3479189" />
       <window_info anchor="bottom" id="Statistic" order="11" />
       <window_info anchor="bottom" id="SmartIM" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -267,46 +317,135 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="消息发出去收不到" />
-    <option name="LAST_COMMIT_MESSAGE" value="消息发出去收不到" />
+    <MESSAGE value="First Demo finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Demo finished" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://C:/Program Files/erl10.4/lib/kernel-6.4/src/gen_tcp.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="282" selection-start-line="282" selection-end-line="282" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/http_server_demo.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        <state relative-caret-position="216">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
+    <entry file="file://$PROJECT_DIR$/src/network/tcp_parallel_server.erl" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="-1296" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/chatting_server.erl" />
+    <entry file="file://C:/Program Files/erl10.4/lib/kernel-6.4/src/gen_tcp.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5418">
+          <caret line="301" column="30" selection-start-line="301" selection-start-column="30" selection-end-line="301" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/tcp_parallel_server.erl">
+    <entry file="file://C:/Program Files/erl10.4/lib/erts-10.4/src/erlang.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+        <state relative-caret-position="211">
+          <caret line="423" selection-start-line="423" selection-end-line="423" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base_hello/hello_world.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+        <state relative-caret-position="1725">
+          <caret line="69" column="23" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="23" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Erlang (ErlangStudy)|Erlang</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8.0_131</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Erlang|ErlangStudy</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
