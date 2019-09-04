@@ -42,9 +42,9 @@ loop(Socket, Buffer) ->
   case gen_tcp:recv(Socket, 0) of
     {ok, Data} ->
       %% inet:setopts(Socket, [{active, once}]),
-      io:format("Receive data ~p~n", [Data]),
+      %% io:format("Receive data ~p~n", [Data]),
       %% 重点讲一下这段代码：decode_header函数是用来解包的，数据包的定义如下
-      %% <<"TTCP", GramType:8, QOS:8, Size:16, BitString:Size/bitstring>>
+      %% <<"TTCP", GramType:8, QOS:8, Size:16, BitString:Size/binary>>
       LeastBinData = decode_header(<<Buffer/binary, Data/binary>>),
       loop(Socket, LeastBinData);
     {error, closed} ->
@@ -63,15 +63,20 @@ loop(Socket, Buffer) ->
 %% 3 加入群组
 %% 4 退出群组
 %% 5 发广播
-decode_header(<<"TTCP", GramType:8, QOS:8, Size:16, PayLoad:Size/bitstring, LeastBin/binary>>) ->
-  io:format("Type is [~p] QOS is [~p] Size is [~p] PayLoad is[~p] ~n", [GramType, QOS, Size, PayLoad]),
-  io:format("LeastBin is [~p] ~n", [LeastBin]),
+decode_header(<<"TTCP", GramType:8, QOS:8, Size:16, PayLoad:Size/binary, LeastBin/binary>>) ->
+  io:format("Type is [~p] QOS is [~p] Size is [~p] PayLoad is [~p]~n", [GramType, QOS, Size, <<PayLoad:Size/binary, LeastBin/binary>>]),
+%%  io:format("LeastBin is [~p] ~n", [LeastBin]),
   case GramType of
-    0 -> io:format("心跳包");
-    1 -> io:format("登陆请求");
-    2 -> io:format("发送数据");
-    3 -> io:format("加入群组");
-    4 -> io:format("退出群组");
-    5 -> io:format("发广播")
+    0 ->
+      <<UsernameSize:8, Username:UsernameSize/binary>> = <<PayLoad:Size/binary, LeastBin/binary>>,
+      io:format("HeartBeat from [~p]  Size is [~p] ~n", [Username, UsernameSize]);
+    1 ->
+      <<UsernameSize:8, PasswordSize:8, Username:UsernameSize/binary, Password:PasswordSize/binary>> = <<PayLoad:Size/binary, LeastBin/binary>>,
+      io:format("Login request,Username is [~p] Password is  [~p] ~n", [Username, Password]);
+    2 -> io:format("Send message");
+    3 -> io:format("Join group");
+    4 -> io:format("Exit group");
+    5 -> io:format("Boardcast");
+    _ -> ok
   end,
   LeastBin.
