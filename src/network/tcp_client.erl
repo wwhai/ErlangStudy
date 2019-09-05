@@ -40,7 +40,7 @@ heart_beat(Username)
   Size = byte_size(Username),
   UsernameSize = byte_size(Username),
 
-  <<"TTCP", GramType:8, QOS:8, Size:16, UsernameSize:8, Username/binary>>.
+  <<"TTCP", GramType:8, QOS:8, Size:16, Username:UsernameSize/binary>>.
 
 login(Username, Password)
   when is_binary(Username) and is_binary(Password) ->
@@ -49,5 +49,4 @@ login(Username, Password)
   UsernameSize = byte_size(Username),
   PasswordSize = byte_size(Password),
   Size = UsernameSize + PasswordSize,
-
   <<"TTCP", GramType:8, QOS:8, Size:16, UsernameSize:8, PasswordSize:8, Username:UsernameSize/binary, Password:PasswordSize/binary>>.
