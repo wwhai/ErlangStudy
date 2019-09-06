@@ -7,30 +7,36 @@
 %%% Created : 24. 八月 2019 12:43
 %%%-------------------------------------------------------------------
 -module(tcp_client).
--export([start/1]).
--define(USERNAME, <<"wwhai">>).
+-export([start/1, start/0]).
+-define(USERNAME, <<"username">>).
 -define(PASSWORD, <<"password">>).
 
 start(Port) ->
   case gen_tcp:connect("127.0.0.1", Port, [binary, {packet, 0}, {active, false}, {reuseaddr, true}]) of
-    {ok, Socket} ->
+    {ok, ServerSocket} ->
       io:format("Request login ~n"),
-      send_data(Socket, login(<<"username">>, <<"password">>)),
-      io:format("Heart beat ~n"),
-      send_data(Socket, heart_beat(<<"751957846">>));
-    _ -> io:format("Error ~n")
+      send_data(ServerSocket, login(<<"username">>, <<"password">>)),
+      %% loop(ServerSocket);
+      ControlPid = spawn(fun() -> loop(ServerSocket) end),
+      gen_tcp:controlling_process(ServerSocket, ControlPid),
+      ServerSocket;
+    {error, Why} -> io:format("Error ~p~n", [Why])
 
   end.
+start() ->
+  start(8888).
+
+loop(Socket) -> loop(Socket).
+%%  case gen_tcp:recv(Socket, 0) of
+%%    {ok, Data} ->
+%%      loop(Socket);
+%%    {error, closed} ->
+%%      io:format("Socket [~p] close ~n", [Socket])
+%%
+%%  end.
 
 send_data(Socket, Data) ->
   gen_tcp:send(Socket, Data).
-
-
-%%pack(cli, 10000, {Rid, Srv_id, Msg}) ->
-%%  Data   = <<Rid:32, byte_size(Srv_id):16, Srv_id/binary, byte_size(Msg):16, Msg/binary>>,
-%%  Packet = <<(byte_size(Data) + 2):32, 10000:16, Data/binary>>,
-%%  {ok, Packet}.
-%%
 
 
 heart_beat(Username)
@@ -41,6 +47,15 @@ heart_beat(Username)
   UsernameSize = byte_size(Username),
 
   <<"TTCP", GramType:8, QOS:8, Size:16, Username:UsernameSize/binary>>.
+
+
+publish(Msg)
+  when is_binary(Msg) ->
+  GramType = 2,
+  QOS = 2,
+  Size = byte_size(Msg),
+  MsgSize = byte_size(Msg),
+  <<"TTCP", GramType:8, QOS:8, Size:16, Msg:MsgSize/binary>>.
 
 login(Username, Password)
   when is_binary(Username) and is_binary(Password) ->

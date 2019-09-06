@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e1b46173-9fc4-4921-a03b-39b527308e82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base_hello/hello_world.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/base_hello/hello_world.erl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/tcp_client.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_client.erl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/tcp_server.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_server.erl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1345">
-              <caret line="89" column="141" selection-start-line="89" selection-start-column="141" selection-end-line="89" selection-end-column="141" />
+            <state relative-caret-position="-956">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -35,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+            <state relative-caret-position="50">
+              <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -70,9 +70,9 @@
         <option value="$PROJECT_DIR$/src/network/s.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_parallel_server.erl" />
         <option value="$PROJECT_DIR$/src/network/chatting_server.erl" />
+        <option value="$PROJECT_DIR$/src/network/tcp_server.erl" />
         <option value="$PROJECT_DIR$/src/base_hello/hello_world.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
-        <option value="$PROJECT_DIR$/src/network/tcp_server.erl" />
       </list>
     </option>
   </component>
@@ -90,7 +90,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,7 +119,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -198,7 +198,7 @@
       </option>
       <option name="erlFlags" value="" />
       <option name="moduleAndFunction" value="tcp_client start" />
-      <option name="params" value="8888" />
+      <option name="params" value="" />
       <option name="useTestCodePath" value="false" />
       <option name="workDirectory" value="" />
       <method v="2">
@@ -249,6 +249,7 @@
       <workItem from="1567472296801" duration="11090000" />
       <workItem from="1567558650403" duration="12914000" />
       <workItem from="1567643748236" duration="17627000" />
+      <workItem from="1567730930125" duration="14637000" />
     </task>
     <task id="LOCAL-00001" summary="消息发出去收不到">
       <created>1566918962426</created>
@@ -275,21 +276,21 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89159000" />
+    <option name="totallyTimeSpent" value="103796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4977778" visible="true" weight="0.18944444" />
-      <window_info id="Structure" order="1" sideWeight="0.50222224" side_tool="true" visible="true" weight="0.18944444" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49579832" visible="true" weight="0.19222222" />
+      <window_info id="Structure" order="1" sideWeight="0.5042017" side_tool="true" weight="0.19222222" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Learn" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944445" visible="true" weight="0.2796158" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944445" visible="true" weight="0.2379936" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -367,22 +368,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base_hello/hello_world.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="72">
+          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1345">
-          <caret line="89" column="141" selection-start-line="89" selection-start-column="141" selection-end-line="89" selection-end-column="141" />
+        <state relative-caret-position="-956">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+        <state relative-caret-position="50">
+          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
         </state>
       </provider>
     </entry>

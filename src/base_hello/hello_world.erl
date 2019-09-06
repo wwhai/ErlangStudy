@@ -12,9 +12,9 @@
 %% API
 -export([start/0]).
 start() ->
-  test_tuple({config, {ip,"localhost", port, 8888}}),
+  spawn(fun() -> io:format("spawn") end),
   io:format("HelloWorld---Erlang! ~n").
 
 test_tuple(Config) ->
-  {config, {ip,Ip, port, Port}} = Config,
+  {config, {ip, Ip, port, Port}} = Config,
   io:format("Config : Ip is [~p] Port is [~p] ~n", [Ip, Port]).
