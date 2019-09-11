@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b46173-9fc4-4921-a03b-39b527308e82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/network/trap_client.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/network/trap_server.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/otp/kitty_server.erl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base_hello/hello_world.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/base_hello/hello_world.erl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/tcp_client.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_client.erl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,17 +29,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-956">
-              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+            <state relative-caret-position="270">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/network/trap_server.erl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/network/trap_client.erl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="12" column="9" selection-start-line="12" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="270">
+              <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -47,6 +68,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Erlang Module" />
+        <option value="Erlang Application" />
       </list>
     </option>
   </component>
@@ -72,9 +94,15 @@
         <option value="$PROJECT_DIR$/src/network/chatting_server.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_server.erl" />
         <option value="$PROJECT_DIR$/src/base_hello/hello_world.erl" />
+        <option value="$PROJECT_DIR$/src/otp/otp_hello.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
+        <option value="$PROJECT_DIR$/src/network/trap_client.erl" />
+        <option value="$PROJECT_DIR$/src/network/trap_server.erl" />
       </list>
     </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -90,7 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -107,18 +134,19 @@
               <item name="ErlangStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErlangStudy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="base_hello" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ErlangStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErlangStudy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="network" type="462c0819:PsiDirectoryNode" />
+              <item name="otp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -127,10 +155,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/network" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Github\ErlangStudy\src\network" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -144,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Erlang Application.TcpClient">
+  <component name="RunManager" selected="Erlang Application.tcp_client">
     <configuration name="ChattingServer" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="ErlangStudy" />
       <option name="allowRunningInParallel" value="false" />
@@ -185,7 +219,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TcpClient" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="start_link" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="ErlangStudy" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="erlFlags" value="" />
+      <option name="moduleAndFunction" value="kitty_server start_link" />
+      <option name="params" value="" />
+      <option name="useTestCodePath" value="false" />
+      <option name="workDirectory" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tcp_client" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="ErlangStudy" />
       <option name="allowRunningInParallel" value="false" />
       <option name="debugOptions">
@@ -228,8 +282,9 @@
     <list>
       <item itemvalue="Erlang Application.ChattingServer" />
       <item itemvalue="Erlang Application.tcp_server" />
-      <item itemvalue="Erlang Application.TcpClient" />
+      <item itemvalue="Erlang Application.tcp_client" />
       <item itemvalue="Erlang Application.HelloWorld" />
+      <item itemvalue="Erlang Application.start_link" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -250,6 +305,8 @@
       <workItem from="1567558650403" duration="12914000" />
       <workItem from="1567643748236" duration="17627000" />
       <workItem from="1567730930125" duration="14637000" />
+      <workItem from="1567988151589" duration="1437000" />
+      <workItem from="1568185638254" duration="3627000" />
     </task>
     <task id="LOCAL-00001" summary="消息发出去收不到">
       <created>1566918962426</created>
@@ -276,13 +333,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103796000" />
+    <option name="totallyTimeSpent" value="108860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49579832" visible="true" weight="0.19222222" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49579832" visible="true" weight="0.19777778" />
       <window_info id="Structure" order="1" sideWeight="0.5042017" side_tool="true" weight="0.19222222" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -373,17 +430,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
+    <entry file="file://$PROJECT_DIR$/src/otp/kitty_server.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-956">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="175">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/tcp_client.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="270">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/trap_client.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="9" selection-start-line="12" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/trap_server.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>

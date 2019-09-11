@@ -1,12 +1,12 @@
 %%%-------------------------------------------------------------------
-%%% @author 75195
-%%% @copyright (C) 2019, <COMPANY>
+%%% @author Wangwenhai
+%%% @copyright (C) 2019, <Wangwenhai>
 %%% @doc
 %%%
 %%% @end
 %%% Created : 24. 八月 2019 12:43
 %%%-------------------------------------------------------------------
--module(tcp_client).
+-module(trap_client).
 -export([start/1, start/0]).
 -define(USERNAME, <<"username">>).
 -define(PASSWORD, <<"password">>).
