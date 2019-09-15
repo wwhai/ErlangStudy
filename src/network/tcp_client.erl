@@ -23,7 +23,7 @@ start(Port) ->
 
   end.
 start() ->
-  start(8888).
+  start(5510).
 
 loop(Socket) ->
   case gen_tcp:recv(Socket, 0) of
