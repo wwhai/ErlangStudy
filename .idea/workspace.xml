@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b46173-9fc4-4921-a03b-39b527308e82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/75195.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/otp/otp_application_demo.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/otp/otp_client.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/otp/otp_gen_server_demo.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/otp/otp_server.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/otp/otp_tcp_server.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trap_server/server.app" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trap_server/trap_otp_server_handler.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trap_server/tcp_client_supervisor.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trap_server/tcp_server_app.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trap_server/tcp_server_handler.erl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trap_server/tcp_server_listener.erl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/tcp_client.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/tcp_client.erl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trap_server/server.app" beforeDir="false" afterPath="$PROJECT_DIR$/src/trap_server/server.app" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl" beforeDir="false" afterPath="$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trap_server/trap_otp_server_handler.erl" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,12 +28,26 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/server.app">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            <state relative-caret-position="-1">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_client_supervisor.erl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="569">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -44,35 +55,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="216">
+              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_listener.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="757">
-              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+            <state relative-caret-position="333">
+              <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/trap_server/trap_otp_server_handler.erl">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_app.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="412">
+              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
+        <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_handler.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="468">
+              <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -97,6 +108,7 @@
       <find>ListenPort</find>
       <find>Opts</find>
       <find>DEF_PORT</find>
+      <find>tcp_client_sup</find>
     </findStrings>
     <replaceStrings>
       <replace>binary</replace>
@@ -105,6 +117,7 @@
       <replace>LocalPort</replace>
       <replace>Options</replace>
       <replace>DEFAULT_PORT</replace>
+      <replace>tcp_client_supervisor</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -128,10 +141,15 @@
         <option value="$PROJECT_DIR$/src/trap_server/trap_otp_server.erl" />
         <option value="$PROJECT_DIR$/src/trap_server/tcp_server_sup.erl" />
         <option value="$PROJECT_DIR$/src/network/tcp_server.erl" />
-        <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
-        <option value="$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl" />
         <option value="$PROJECT_DIR$/src/trap_server/trap_otp_server_handler.erl" />
+        <option value="$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl" />
+        <option value="$PROJECT_DIR$/src/trap_server/tcp_server_handler.erl" />
+        <option value="$PROJECT_DIR$/src/trap_server/server.app" />
+        <option value="$PROJECT_DIR$/src/trap_server/tcp_client_supervisor.erl" />
+        <option value="$PROJECT_DIR$/src/trap_server/tcp_server_app.erl" />
         <option value="$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl" />
+        <option value="$PROJECT_DIR$/src/network/tcp_client.erl" />
+        <option value="$PROJECT_DIR$/src/trap_server/tcp_server_listener.erl" />
       </list>
     </option>
   </component>
@@ -152,7 +170,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,7 +199,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,6 +331,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="tcp_server_app" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="ErlangStudy" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="erlFlags" value="" />
+      <option name="moduleAndFunction" value="tcp_server_app start" />
+      <option name="params" value="" />
+      <option name="useTestCodePath" value="false" />
+      <option name="workDirectory" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="trap_otp_server" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="ErlangStudy" />
       <option name="allowRunningInParallel" value="false" />
@@ -357,6 +395,7 @@
       <item itemvalue="Erlang Application.ChattingServer" />
       <item itemvalue="Erlang Application.tcp_server" />
       <item itemvalue="Erlang Application.tcp_client" />
+      <item itemvalue="Erlang Application.tcp_server_app" />
       <item itemvalue="Erlang Application.HelloWorld" />
       <item itemvalue="Erlang Application.otp_gen_server_demo" />
       <item itemvalue="Erlang Application.trap_otp_server" />
@@ -386,6 +425,7 @@
       <workItem from="1568348449819" duration="1208000" />
       <workItem from="1568439972040" duration="24000" />
       <workItem from="1568523965517" duration="13731000" />
+      <workItem from="1568680667369" duration="6728000" />
     </task>
     <task id="LOCAL-00001" summary="消息发出去收不到">
       <created>1566918962426</created>
@@ -412,12 +452,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123828000" />
+    <option name="totallyTimeSpent" value="134080000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2501" height="1456" extended-state="6" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49579832" visible="true" weight="0.16441165" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49579832" visible="true" weight="0.20611112" />
       <window_info id="Structure" order="1" sideWeight="0.5042017" side_tool="true" weight="0.19222222" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -425,12 +466,12 @@
       <window_info id="Learn" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944445" visible="true" weight="0.22003035" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944445" visible="true" weight="0.22945571" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32852808" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3276414" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32950193" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005556" side_tool="true" weight="0.3479189" />
@@ -510,8 +551,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/otp/kitty_server.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="600">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
         </state>
       </provider>
     </entry>
@@ -527,8 +568,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/trap_server.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="324">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -574,16 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/otp/otp_gen_server_demo.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2300">
-          <caret line="140" column="58" lean-forward="true" selection-start-line="140" selection-start-column="58" selection-end-line="140" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/trap_server/server.app">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/tcp_server.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -591,31 +622,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
+    <entry file="file://$PROJECT_DIR$/src/otp/otp_gen_server_demo.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="600">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/erl10.4/lib/stdlib-3.9/src/supervisor.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="180" column="17" lean-forward="true" selection-start-line="180" selection-start-column="17" selection-end-line="180" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trap_server/trap_otp_server_handler.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        <state relative-caret-position="342">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trap_server/trap_otp_server_app.erl">
+    <entry file="file://$PROJECT_DIR$/src/trap_server/server.app">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_handler.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        <state relative-caret-position="468">
+          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_client_supervisor.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_app.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_supervisor.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="-1">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/tcp_client.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trap_server/tcp_server_listener.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
         </state>
       </provider>
     </entry>
