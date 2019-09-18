@@ -16,8 +16,8 @@
 -define(Timeout, 120*1000).
 
 start_link(LSock) ->
-  io:format("tcp handler start link~n"),
-  gen_server:start_link(?MODULE, [LSock], []).
+io:format("tcp handler start link~n"),
+gen_server:start_link(?MODULE, [LSock], []).
 
 init([LSock]) ->
   io:format("tcp handler init ~n"),
