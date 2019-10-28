@@ -15,15 +15,16 @@ start(Port) ->
   case gen_tcp:connect("127.0.0.1", Port, [binary, {packet, 0}, {active, false}, {reuseaddr, true}]) of
     {ok, ServerSocket} ->
       io:format("Request login ~n"),
-      send_data(ServerSocket, login(<<"username">>, <<"password">>)),
+      send_data(ServerSocket, login(<<"11111">>)),
       ControlPid = spawn(fun() -> loop(ServerSocket) end),
       gen_tcp:controlling_process(ServerSocket, ControlPid),
       ServerSocket;
     {error, Why} -> io:format("Error ~p~n", [Why])
 
   end.
+
 start() ->
-  start(5510).
+  start(5000).
 
 loop(Socket) ->
   case gen_tcp:recv(Socket, 0) of
@@ -58,11 +59,9 @@ publish(Msg)
   MsgSize = byte_size(Msg),
   <<"TTCP", GramType:8, QOS:8, Size:16, Msg:MsgSize/binary>>.
 
-login(Username, Password)
-  when is_binary(Username) and is_binary(Password) ->
-  GramType = 1,
-  QOS = 2,
-  UsernameSize = byte_size(Username),
-  PasswordSize = byte_size(Password),
-  Size = UsernameSize + PasswordSize,
-  <<"TTCP", GramType:8, QOS:8, Size:16, UsernameSize:8, PasswordSize:8, Username:UsernameSize/binary, Password:PasswordSize/binary>>.
+login(ClientId)
+  when is_binary(ClientId)->
+  Mode = 1,
+  Type = 2,
+  ClientIdSize = byte_size(ClientId),
+  << Mode:4, Type:4, ClientIdSize:16, ClientId/binary>>.
